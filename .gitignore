@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+site/dist/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Dev/tooling artifacts
+.agent/
+queue/
+temp/
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
