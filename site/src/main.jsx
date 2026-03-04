@@ -1,22 +1,27 @@
+console.log('NutriEnclave: Top of main.jsx reached');
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { NutriProvider } from './context/NutriContext'
 
-console.log('NutriEnclave: main.jsx loading...');
-try {
-  const root = document.getElementById('root');
-  if (!root) console.error('NutriEnclave Error: #root element not found!');
+console.log('NutriEnclave: Imports complete');
 
-  createRoot(root).render(
-    <StrictMode>
-      <NutriProvider>
-        <App />
-      </NutriProvider>
-    </StrictMode>,
+try {
+  const rootElement = document.getElementById('root');
+  console.log('NutriEnclave: #root element is:', rootElement);
+
+  if (!rootElement) {
+    throw new Error('Could not find #root element');
+  }
+
+  const root = createRoot(rootElement);
+  root.render(
+    <NutriProvider>
+      <App />
+    </NutriProvider>
   );
-  console.log('NutriEnclave: Initial render called successfully');
+  console.log('NutriEnclave: Initial render called');
 } catch (err) {
-  console.error('NutriEnclave Critical Render Error:', err);
+  console.error('NutriEnclave: Error during initialization:', err);
 }
