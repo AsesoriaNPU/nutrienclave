@@ -96,7 +96,7 @@ const RecipeList = () => {
                                                 }}
                                                 className="w-8 h-8 rounded-full bg-white bg-opacity-90 flex items-center justify-center border-none cursor-pointer shadow-sm text-primary"
                                             >
-                                                <Star size={14} fill={favorites.includes(recipe.id) ? "#76D14B" : "transparent"} strokeWidth={1.5} />
+                                                <Star size={14} fill={Array.isArray(favorites) && favorites.includes(recipe.id) ? "#76D14B" : "transparent"} strokeWidth={1.5} />
                                             </button>
                                         </div>
                                     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Bot, ArrowLeft, Lightbulb, TrendingUp, Utensils, Droplets } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Send, User, Bot, ArrowLeft, Lightbulb, TrendingUp, Utensils, Droplets, Activity, ShoppingCart, MessageSquare } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useNutri } from '../context/NutriContext';
 import { recipes } from '../data/mockData';
 
@@ -215,6 +215,15 @@ const AIChat = () => {
                     </button>
                 </div>
             </footer>
+
+            {/* Bottom Nav */}
+            <nav className="p-4 bg-white glass border-t border-gray-100 flex justify-around items-center flex-shrink-0">
+                <Link to="/dashboard"><Activity size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+                <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#76D14B" /></Link>
+                <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+                <Link to="/profile"><User size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+            </nav>
         </div>
     );
 };

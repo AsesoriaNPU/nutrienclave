@@ -55,26 +55,34 @@ const Profile = () => {
                 </div>
 
                 <div className="space-y-3">
-                    {sections.map((section, index) => (
-                        <motion.div
-                            key={section.title}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="zen-card p-4 flex items-center justify-between hover:bg-gray-50 transition-all cursor-pointer group"
-                        >
-                            <div className="flex items-center gap-4">
-                                <div className="text-gray-400 group-hover:text-primary transition-colors">
-                                    {section.icon}
+                    {sections.map((section, index) => {
+                        let targetRoute = '/dashboard';
+                        if (section.title === 'Preferencias de Enclave') targetRoute = '/settings';
+                        if (section.title === 'Datos Clínicos') targetRoute = '/evolution';
+                        if (section.title === 'Dispositivos Vinculados') targetRoute = '/settings';
+
+                        return (
+                            <motion.div
+                                key={section.title}
+                                onClick={() => navigate(targetRoute)}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                                className="zen-card p-4 flex items-center justify-between hover:bg-gray-50 transition-all cursor-pointer group"
+                            >
+                                <div className="flex items-center gap-4">
+                                    <div className="text-gray-400 group-hover:text-primary transition-colors">
+                                        {section.icon}
+                                    </div>
+                                    <div>
+                                        <div className="text-sm font-light text-gray-700">{section.title}</div>
+                                        <div className="text-zen-label text-gray-400">{section.subtitle}</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div className="text-sm font-light text-gray-700">{section.title}</div>
-                                    <div className="text-zen-label text-gray-400">{section.subtitle}</div>
-                                </div>
-                            </div>
-                            <ChevronRight size={16} className="text-gray-300" />
-                        </motion.div>
-                    ))}
+                                <ChevronRight size={16} className="text-gray-300" />
+                            </motion.div>
+                        )
+                    })}
                 </div>
 
                 <button

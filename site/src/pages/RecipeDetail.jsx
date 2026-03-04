@@ -62,7 +62,7 @@ const RecipeDetail = () => {
                             onClick={() => toggleFavorite(recipe.id)}
                             className="w-10 h-10 rounded-full glass flex items-center justify-center border-none cursor-pointer shadow-md text-primary"
                         >
-                            <Star size={18} fill={favorites.includes(recipe.id) ? "#76D14B" : "transparent"} strokeWidth={1.5} />
+                            <Star size={18} fill={Array.isArray(favorites) && favorites.includes(recipe.id) ? "#76D14B" : "transparent"} strokeWidth={1.5} />
                         </button>
                     </div>
                 </div>
