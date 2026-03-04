@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Thermometer, Droplets, Wind, Save, Sparkles } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { ArrowLeft, Thermometer, Droplets, Wind, Save, Sparkles, Activity, ShoppingCart, MessageSquare, TrendingUp, User } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useNutri } from '../context/NutriContext';
 
 const SafeSpace = () => {
@@ -116,6 +116,15 @@ const SafeSpace = () => {
                     </motion.button>
                 </div>
             </main>
+
+            {/* Bottom Nav */}
+            <nav className="fixed bottom-0 left-0 right-0 p-4 bg-white glass border-t border-gray-100 flex justify-around items-center">
+                <Link to="/dashboard"><Activity size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+                <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+                <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+                <Link to="/profile"><User size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+            </nav>
         </div>
     );
 };

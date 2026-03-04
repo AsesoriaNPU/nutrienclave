@@ -7,10 +7,16 @@ import {
     X,
     Trash2,
     Circle,
-    CheckCircle2
+    CheckCircle2,
+    Activity,
+    ShoppingCart,
+    MessageSquare,
+    TrendingUp,
+    User
 } from 'lucide-react';
 import { useNutri } from '../context/NutriContext';
 import { groceryCategories } from '../data/mockData';
+import { Link } from 'react-router-dom';
 
 const GroceryList = () => {
     const navigate = useNavigate();
@@ -46,7 +52,7 @@ const GroceryList = () => {
     const progress = totalItems === 0 ? 0 : Math.round((checkedItems / totalItems) * 100);
 
     return (
-        <div className="min-h-screen bg-zen-bg flex flex-col">
+        <div className="min-h-screen bg-zen-bg flex flex-col pb-24">
             <header className="p-6 bg-white flex items-center justify-between border-b border-gray-100 sticky top-0 z-10">
                 <div className="flex items-center gap-4">
                     <button onClick={() => navigate('/dashboard')} className="text-gray-400 border-none bg-transparent cursor-pointer">
@@ -136,7 +142,7 @@ const GroceryList = () => {
                 ))}
             </main>
 
-            <footer className="p-6 bg-white border-t border-gray-100 sticky bottom-0 z-10 glass">
+            <footer className="p-6 bg-white border-t border-gray-100 relative z-10 glass">
                 <div className="flex justify-between items-center text-xs uppercase tracking-widest text-gray-400 font-light">
                     <span>Progreso del Enclave</span>
                     <span className="text-primary font-medium">{progress}%</span>
@@ -149,6 +155,15 @@ const GroceryList = () => {
                     />
                 </div>
             </footer>
+
+            {/* Bottom Nav */}
+            <nav className="fixed bottom-0 left-0 right-0 p-4 bg-white glass border-t border-gray-100 flex justify-around items-center">
+                <Link to="/dashboard"><Activity size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#76D14B" /></Link>
+                <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+                <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+                <Link to="/profile"><User size={24} strokeWidth={1} color="#CBD5E1" /></Link>
+            </nav>
         </div>
     );
 };
