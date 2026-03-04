@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Bell, CheckCheck, Flame, TrendingUp, MessageSquare, Utensils, Activity, ShoppingCart, User } from 'lucide-react';
+import { ArrowLeft, Bell, CheckCheck, Flame, TrendingUp, MessageSquare, Utensils, Activity, ShoppingCart, User, Award } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useNutri } from '../context/NutriContext';
 
