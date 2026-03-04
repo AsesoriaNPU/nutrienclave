@@ -1,79 +1,16 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Search, Filter, Clock, Flame, Star, ArrowLeft, Activity, ShoppingCart, MessageSquare, TrendingUp, User } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useNutri } from '../context/NutriContext';
+import { recipes } from '../data/mockData';
 
-const allRecipes = [
-    {
-        id: '1',
-        name: 'Salmón al vapor con Espárragos',
-        image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&q=80',
-        time: '25 min',
-        kcal: 380,
-        rating: 4.8,
-        category: 'Proteína',
-        tags: ['Sin gluten', 'Omega-3'],
-    },
-    {
-        id: '2',
-        name: 'Bowl de Quinoa con Verduras',
-        image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80',
-        time: '20 min',
-        kcal: 320,
-        rating: 4.6,
-        category: 'Vegano',
-        tags: ['Sin gluten', 'Alto en fibra'],
-    },
-    {
-        id: '3',
-        name: 'Pollo con Cúrcuma y Verduras',
-        image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c3?w=400&q=80',
-        time: '35 min',
-        kcal: 420,
-        rating: 4.7,
-        category: 'Proteína',
-        tags: ['Antiinflamatorio'],
-    },
-    {
-        id: '4',
-        name: 'Ensalada de Aguacate y Huevo',
-        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80',
-        time: '10 min',
-        kcal: 280,
-        rating: 4.5,
-        category: 'Ligevero',
-        tags: ['Keto', 'Rápido'],
-    },
-    {
-        id: '5',
-        name: 'Crema de Calabaza con Jengibre',
-        image: 'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=400&q=80',
-        time: '30 min',
-        kcal: 210,
-        rating: 4.4,
-        category: 'Vegano',
-        tags: ['Antiinflamatorio', 'Digestivo'],
-    },
-    {
-        id: '6',
-        name: 'Trucha con Almendras y Limón',
-        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80',
-        time: '20 min',
-        kcal: 340,
-        rating: 4.9,
-        category: 'Proteína',
-        tags: ['Sin gluten', 'Omega-3'],
-    },
-];
-
-const categories = ['Todo', 'Proteína', 'Vegano', 'Ligevero'];
+const categories = ['Todo', 'Proteína', 'Vegano', 'Ligero'];
 
 const RecipeList = () => {
     const navigate = useNavigate();
+    const { favorites, toggleFavorite } = useNutri();
     const [search, setSearch] = useState('');
     const [activeCategory, setActiveCategory] = useState('Todo');
 
-    const filtered = allRecipes.filter(r => {
+    const filtered = recipes.filter(r => {
         const matchesSearch = r.name.toLowerCase().includes(search.toLowerCase());
         const matchesCategory = activeCategory === 'Todo' || r.category === activeCategory;
         return matchesSearch && matchesCategory;
@@ -113,8 +50,8 @@ const RecipeList = () => {
                             key={cat}
                             onClick={() => setActiveCategory(cat)}
                             className={`flex-shrink-0 px-4 py-2 rounded-full text-xs uppercase tracking-widest font-medium border transition-all cursor-pointer ${activeCategory === cat
-                                    ? 'bg-primary text-white border-primary'
-                                    : 'bg-white text-gray-400 border-gray-200 hover:border-primary'
+                                ? 'bg-primary text-white border-primary'
+                                : 'bg-white text-gray-400 border-gray-200 hover:border-primary'
                                 }`}
                         >
                             {cat}
@@ -144,9 +81,20 @@ const RecipeList = () => {
                                             className="w-full h-full"
                                             style={{ objectFit: 'cover' }}
                                         />
-                                        <div className="absolute top-2 right-2 bg-white bg-opacity-90 rounded-full px-2 py-1 flex items-center gap-1">
-                                            <Star size={10} color="#76D14B" fill="#76D14B" />
-                                            <span style={{ fontSize: '0.65rem' }} className="font-medium text-gray-700">{recipe.rating}</span>
+                                        <div className="absolute top-2 right-2 flex flex-col gap-2">
+                                            <div className="bg-white bg-opacity-90 rounded-full px-2 py-1 flex items-center gap-1">
+                                                <Star size={10} color="#76D14B" fill="#76D14B" />
+                                                <span style={{ fontSize: '0.65rem' }} className="font-medium text-gray-700">{recipe.rating}</span>
+                                            </div>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    toggleFavorite(recipe.id);
+                                                }}
+                                                className="w-8 h-8 rounded-full bg-white bg-opacity-90 flex items-center justify-center border-none cursor-pointer shadow-sm text-primary"
+                                            >
+                                                <Star size={14} fill={favorites.includes(recipe.id) ? "#76D14B" : "transparent"} strokeWidth={1.5} />
+                                            </button>
                                         </div>
                                     </div>
                                     <div className="p-3 space-y-2">

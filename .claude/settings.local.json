@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(pip3 list:*)",
+      "Bash(curl:*)",
+      "Bash(~/.local/bin/uv:*)",
+      "Bash(uv:*)",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(git:*)",
+      "Bash(claude:*)",
+      "Bash(code:*)",
+      "WebFetch(domain:www.python.org)",
+      "WebFetch(domain:github.com)",
+      "Bash(winget upgrade:*)",
+      "Bash(winget search:*)",
+      "Bash(winget install:*)",
+      "WebSearch",
+      "Bash(node_modules/.bin/vite:*)"
+    ]
+  }
+}

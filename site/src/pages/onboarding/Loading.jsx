@@ -19,23 +19,23 @@ const LoadingScreen = () => {
     }, [navigate]);
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-white overflow-hidden">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-zen-bg overflow-hidden">
             <div className="relative w-48 h-48 flex items-center justify-center">
                 {/* Animated Rings */}
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 border border-gray-100 rounded-full"
+                    className="absolute inset-0 border border-gray-400 border-opacity-10 rounded-full"
                 />
                 <motion.div
                     animate={{ rotate: -360 }}
                     transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-4 border border-[#76D14B] border-opacity-20 rounded-full border-t-transparent"
+                    className="absolute inset-4 border border-primary border-opacity-20 rounded-full border-t-transparent"
                 />
                 <motion.div
                     animate={{ scale: [1, 1.1, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="w-2 h-2 bg-[#76D14B] rounded-full shadow-[0_0_15px_#76D14B]"
+                    className="w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_var(--color-primary)]"
                 />
             </div>
 

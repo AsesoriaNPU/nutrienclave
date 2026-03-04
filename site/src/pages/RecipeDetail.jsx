@@ -1,77 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Clock, Users, Flame, Star, ChevronRight, CheckCircle, ShoppingCart, Activity, MessageSquare, User } from 'lucide-react';
-import { useNavigate, Link } from 'react-router-dom';
-
-const recipes = {
-    '1': {
-        id: '1',
-        name: 'Salmón al vapor con Espárragos',
-        image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80',
-        time: '25 min',
-        servings: 2,
-        kcal: 380,
-        rating: 4.8,
-        tags: ['Alto en omega-3', 'Sin gluten', 'Rico en proteínas'],
-        ingredients: [
-            { amount: '350g', name: 'Lomo de salmón fresco', checked: false },
-            { amount: '200g', name: 'Espárragos verdes', checked: false },
-            { amount: '2 cdas', name: 'Aceite de oliva virgen extra', checked: false },
-            { amount: '1', name: 'Limón y Cebollín', checked: false },
-            { amount: '1 diente', name: 'Ajo', checked: false },
-            { amount: 'Al gusto', name: 'Sal marina y pimienta negra', checked: false },
-        ],
-        steps: [
-            'Lava bien los espárragos y retira la parte leñosa inferior.',
-            'Sazona el salmón con sal, pimienta y unas gotas de limón.',
-            'Coloca el salmón a 90°C durante 18-20 minutos hasta que esté tierno.',
-            'En paralelo, saltea los espárragos con aceite de oliva durante 4 minutos.',
-            'Sirve el salmón sobre los espárragos y decora con cebollín.',
-        ],
-        macros: {
-            proteinas: '42g',
-            grasas: '18g',
-            carbohidratos: '6g',
-            fibra: '3g',
-        }
-    },
-    '2': {
-        id: '2',
-        name: 'Bowl de Quinoa con Verduras',
-        image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',
-        time: '20 min',
-        servings: 2,
-        kcal: 320,
-        rating: 4.6,
-        tags: ['Vegano', 'Sin gluten', 'Alto en fibra'],
-        ingredients: [
-            { amount: '200g', name: 'Quinoa cocida', checked: false },
-            { amount: '100g', name: 'Aguacate maduro', checked: false },
-            { amount: '150g', name: 'Tomates cherry', checked: false },
-            { amount: '80g', name: 'Espinacas baby', checked: false },
-            { amount: '2 cdas', name: 'Tahini', checked: false },
-        ],
-        steps: [
-            'Cocina la quinoa según las instrucciones del paquete.',
-            'Corta el aguacate en láminas y los tomates por la mitad.',
-            'Mezcla el tahini con limón y agua para hacer el aliño.',
-            'Monta el bowl: quinoa, verduras y aliño por encima.',
-        ],
-        macros: {
-            proteinas: '14g',
-            grasas: '16g',
-            carbohidratos: '38g',
-            fibra: '8g',
-        }
-    }
-};
+import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNutri } from '../context/NutriContext';
+import { recipes as allRecipes } from '../data/mockData';
 
 const RecipeDetail = () => {
     const navigate = useNavigate();
-    // Detect recipe from URL param, default to '1'
-    const pathParts = window.location.pathname.split('/');
-    const recipeId = pathParts[pathParts.length - 1] || '1';
-    const recipe = recipes[recipeId] || recipes['1'];
+    const { id } = useParams();
+    const { favorites, toggleFavorite, addToGroceryList } = useNutri();
+    const recipe = allRecipes.find(r => r.id === id) || allRecipes[0];
 
     const [checkedIngredients, setCheckedIngredients] = useState(
         recipe.ingredients.map(() => false)
@@ -79,6 +17,7 @@ const RecipeDetail = () => {
     const [completedSteps, setCompletedSteps] = useState(
         recipe.steps.map(() => false)
     );
+    const [addingToList, setAddingToList] = useState(false);
 
     const toggleIngredient = (i) => {
         setCheckedIngredients(prev => prev.map((v, idx) => idx === i ? !v : v));
@@ -86,6 +25,12 @@ const RecipeDetail = () => {
 
     const toggleStep = (i) => {
         setCompletedSteps(prev => prev.map((v, idx) => idx === i ? !v : v));
+    };
+
+    const handleAddIngredients = () => {
+        addToGroceryList(recipe.ingredients);
+        setAddingToList(true);
+        setTimeout(() => setAddingToList(false), 2000);
     };
 
     return (
@@ -99,12 +44,28 @@ const RecipeDetail = () => {
                     style={{ objectFit: 'cover' }}
                 />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%)' }} />
-                <button
-                    onClick={() => navigate(-1)}
-                    className="absolute top-5 left-5 w-10 h-10 rounded-full bg-white bg-opacity-90 flex items-center justify-center border-none cursor-pointer shadow-md"
-                >
-                    <ArrowLeft size={18} strokeWidth={1.5} />
-                </button>
+                <div className="absolute top-5 left-5 right-5 flex justify-between items-center">
+                    <button
+                        onClick={() => navigate(-1)}
+                        className="w-10 h-10 rounded-full glass flex items-center justify-center border-none cursor-pointer shadow-md text-gray-700"
+                    >
+                        <ArrowLeft size={18} strokeWidth={1.5} />
+                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            onClick={handleAddIngredients}
+                            className={`w-10 h-10 rounded-full glass flex items-center justify-center border-none cursor-pointer shadow-md transition-all ${addingToList ? 'text-primary' : 'text-gray-400'}`}
+                        >
+                            <ShoppingCart size={18} strokeWidth={1.5} />
+                        </button>
+                        <button
+                            onClick={() => toggleFavorite(recipe.id)}
+                            className="w-10 h-10 rounded-full glass flex items-center justify-center border-none cursor-pointer shadow-md text-primary"
+                        >
+                            <Star size={18} fill={favorites.includes(recipe.id) ? "#76D14B" : "transparent"} strokeWidth={1.5} />
+                        </button>
+                    </div>
+                </div>
                 <div className="absolute bottom-5 left-5 right-5">
                     <div className="flex gap-2 flex-wrap mb-2">
                         {recipe.tags.map(tag => (
@@ -119,7 +80,7 @@ const RecipeDetail = () => {
             <main className="p-6 space-y-6 max-w-2xl mx-auto">
                 {/* Title and meta */}
                 <div>
-                    <h1 className="text-2xl font-extralight tracking-tight text-gray-800">{recipe.name}</h1>
+                    <h1 className="text-2xl font-extralight tracking-tight" style={{ color: 'var(--color-text)' }}>{recipe.name}</h1>
                     <div className="flex items-center gap-4 mt-3 flex-wrap">
                         <div className="flex items-center gap-1.5 text-gray-400">
                             <Clock size={14} strokeWidth={1.5} />
@@ -165,11 +126,11 @@ const RecipeDetail = () => {
                             key={i}
                             onClick={() => toggleIngredient(i)}
                             className="w-full flex items-center gap-3 py-2 border-none bg-transparent cursor-pointer text-left"
-                            style={{ borderBottom: i < recipe.ingredients.length - 1 ? '1px solid #F1F5F9' : 'none' }}
+                            style={{ borderBottom: i < recipe.ingredients.length - 1 ? '1px solid var(--color-border)' : 'none' }}
                         >
                             <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all flex-shrink-0 ${checkedIngredients[i]
-                                    ? 'border-primary bg-primary'
-                                    : 'border-gray-200 bg-transparent'
+                                ? 'border-primary bg-primary'
+                                : 'border-gray-200 bg-transparent'
                                 }`}>
                                 {checkedIngredients[i] && <CheckCircle size={12} color="white" strokeWidth={2} />}
                             </div>
@@ -195,8 +156,8 @@ const RecipeDetail = () => {
                             className="w-full flex items-start gap-4 py-2 border-none bg-transparent cursor-pointer text-left"
                         >
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-medium transition-all border ${completedSteps[i]
-                                    ? 'bg-primary border-primary text-white'
-                                    : 'bg-white border-gray-200 text-gray-400'
+                                ? 'bg-primary border-primary text-white'
+                                : 'bg-white border-gray-200 text-gray-400'
                                 }`}>
                                 {completedSteps[i] ? '✓' : i + 1}
                             </div>

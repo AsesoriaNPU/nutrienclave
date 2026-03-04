@@ -1,62 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, CheckCircle2, Circle, ArrowLeft, Plus, Trash2, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useNutri } from '../context/NutriContext';
+import { groceryCategories } from '../data/mockData';
 
 const GroceryList = () => {
     const navigate = useNavigate();
-    const [categories, setCategories] = useState(() => {
-        const saved = localStorage.getItem('nutri_grocery');
-        return saved ? JSON.parse(saved) : [
-            {
-                name: 'Bio-Activos & Vegetales',
-                items: [
-                    { id: 1, name: 'Espinacas Baby Orgánicas', checked: false },
-                    { id: 2, name: 'Arándanos Silvestres', checked: true },
-                    { id: 3, name: 'Aguacate Hass', checked: false }
-                ]
-            },
-            {
-                name: 'Proteína de Alta Disponibilidad',
-                items: [
-                    { id: 4, name: 'Salmón Salvaje', checked: false },
-                    { id: 5, name: 'Huevos de Pastoreo', checked: false }
-                ]
-            }
-        ];
-    });
+    const {
+        groceryList,
+        toggleGroceryItem,
+        removeGroceryItem,
+        addGroceryItem
+    } = useNutri();
 
     const [newItemName, setNewItemName] = useState('');
     const [showAdd, setShowAdd] = useState(false);
 
-    useEffect(() => {
-        localStorage.setItem('nutri_grocery', JSON.stringify(categories));
-    }, [categories]);
-
-    const toggleItem = (catIndex, itemIndex) => {
-        const newCats = [...categories];
-        newCats[catIndex].items[itemIndex].checked = !newCats[catIndex].items[itemIndex].checked;
-        setCategories(newCats);
-    };
-
-    const removeItem = (catIndex, itemId) => {
-        const newCats = [...categories];
-        newCats[catIndex].items = newCats[catIndex].items.filter(item => item.id !== itemId);
-        setCategories(newCats);
-    };
+    // Group items by category for the UI
+    const categories = groceryCategories.map(cat => ({
+        ...cat,
+        items: groceryList.filter(item =>
+            item.category.toLowerCase() === cat.id.toLowerCase() ||
+            (cat.id === 'otros' && !groceryCategories.some(c => c.id.toLowerCase() === item.category.toLowerCase()))
+        )
+    }));
 
     const addItem = () => {
-        if (!newItemName.trim()) return;
-        const newCats = [...categories];
-        // For simplicity, add to first category
-        newCats[0].items.push({ id: Date.now(), name: newItemName, checked: false });
-        setCategories(newCats);
+        const trimmedName = newItemName.trim();
+        if (!trimmedName) return;
+        addGroceryItem(trimmedName, 'otros');
         setNewItemName('');
         setShowAdd(false);
     };
 
-    const totalItems = categories.reduce((acc, cat) => acc + cat.items.length, 0);
-    const checkedItems = categories.reduce((acc, cat) => acc + cat.items.filter(i => i.checked).length, 0);
+    const totalItems = groceryList.length;
+    const checkedItems = groceryList.filter(i => i.checked).length;
     const progress = totalItems === 0 ? 0 : Math.round((checkedItems / totalItems) * 100);
 
     return (
@@ -120,23 +96,23 @@ const GroceryList = () => {
                                             initial={{ opacity: 0, x: -10 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             exit={{ opacity: 0, scale: 0.95 }}
-                                            className="zen-card p-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                                            className="zen-card p-4 flex items-center justify-between hover:bg-primary-very-soft transition-colors"
                                         >
                                             <div
                                                 className="flex items-center gap-4 flex-1 cursor-pointer"
-                                                onClick={() => toggleItem(catIndex, itemIndex)}
+                                                onClick={() => toggleGroceryItem(item.id)}
                                             >
                                                 {item.checked ? (
-                                                    <CheckCircle2 size={18} color="#76D14B" strokeWidth={1.5} />
+                                                    <CheckCircle2 size={18} className="text-primary" strokeWidth={1.5} />
                                                 ) : (
-                                                    <Circle size={18} color="#E2E8F0" strokeWidth={1.5} />
+                                                    <Circle size={18} className="text-gray-200" strokeWidth={1.5} />
                                                 )}
                                                 <span className={`text-sm font-light ${item.checked ? 'text-gray-300 line-through' : 'text-gray-700'}`}>
                                                     {item.name}
                                                 </span>
                                             </div>
                                             <button
-                                                onClick={(e) => { e.stopPropagation(); removeItem(catIndex, item.id); }}
+                                                onClick={(e) => { e.stopPropagation(); removeGroceryItem(item.id); }}
                                                 className="text-gray-300 hover:text-red-400 transition-colors border-none bg-transparent cursor-pointer p-1"
                                             >
                                                 <Trash2 size={14} strokeWidth={1} />
@@ -155,7 +131,7 @@ const GroceryList = () => {
                     <span>Progreso del Enclave</span>
                     <span className="text-primary font-medium">{progress}%</span>
                 </div>
-                <div className="mt-3 w-full h-[1px] bg-gray-100 relative">
+                <div className="mt-3 w-full h-[1px] bg-gray-400 bg-opacity-10 relative">
                     <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${progress}%` }}

@@ -7,7 +7,7 @@ const SuccessScreen = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-white">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-zen-bg">
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -17,9 +17,9 @@ const SuccessScreen = () => {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", damping: 12, stiffness: 200, delay: 0.2 }}
-                    className="w-24 h-24 bg-[#76D14B] bg-opacity-10 rounded-full flex items-center justify-center mb-10"
+                    className="w-24 h-24 bg-primary-soft rounded-full flex items-center justify-center mb-10"
                 >
-                    <Check size={40} color="#76D14B" strokeWidth={1.5} />
+                    <Check size={40} className="text-primary" strokeWidth={1.5} />
                 </motion.div>
 
                 <h1 className="text-4xl font-extralight mb-4 tracking-tight">Tu Enclave está Listo</h1>

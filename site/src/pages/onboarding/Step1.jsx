@@ -7,7 +7,7 @@ const OnboardingStep1 = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-white">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-zen-bg">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -16,9 +16,9 @@ const OnboardingStep1 = () => {
             >
                 <div className="mb-12">
                     {/* Minimalist Spark Icon */}
-                    <div className="w-24 h-24 flex items-center justify-center border border-gray-100 rounded-full relative">
-                        <Sparkles size={48} strokeWidth={1} color="#76D14B" />
-                        <div className="absolute inset-0 border border-[#76D14B] rounded-full opacity-20 animate-pulse"></div>
+                    <div className="w-24 h-24 flex items-center justify-center border border-gray-100 border-opacity-30 rounded-full relative">
+                        <Sparkles size={48} strokeWidth={1} className="text-primary" />
+                        <div className="absolute inset-0 border border-primary rounded-full opacity-20 animate-pulse"></div>
                     </div>
                 </div>
 
@@ -29,15 +29,15 @@ const OnboardingStep1 = () => {
 
                 {/* Progress dots */}
                 <div className="flex gap-2 mb-12">
-                    <div className="w-2 h-2 rounded-full bg-[#76D14B]"></div>
-                    <div className="w-2 h-2 rounded-full bg-gray-200"></div>
-                    <div className="w-2 h-2 rounded-full bg-gray-200"></div>
+                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <div className="w-2 h-2 rounded-full bg-gray-400 bg-opacity-20"></div>
+                    <div className="w-2 h-2 rounded-full bg-gray-400 bg-opacity-20"></div>
                 </div>
 
                 <div className="w-full flex justify-end">
                     <button
-                        className="text-[#76D14B] font-light flex items-center gap-1 hover:opacity-70 transition-opacity"
-                        onClick={() => navigate('/dashboard')} // Temporary shortcut
+                        className="text-primary font-light flex items-center gap-1 hover:opacity-70 transition-opacity bg-transparent border-none cursor-pointer"
+                        onClick={() => navigate('/onboarding/2')}
                     >
                         Siguiente
                     </button>

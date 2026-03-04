@@ -28,7 +28,7 @@ const OnboardingStep4 = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-white">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-zen-bg">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -47,17 +47,17 @@ const OnboardingStep4 = () => {
                                 key={goal.id}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => toggleGoal(goal.id)}
-                                className={`zen-card p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 ${isSelected ? 'border-[#76D14B] bg-[#F0FAF0]' : 'border-gray-100'
+                                className={`zen-card p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 ${isSelected ? 'border-primary bg-primary-very-soft' : 'border-gray-100 border-opacity-30'
                                     }`}
                             >
-                                <Icon size={28} strokeWidth={1} color={isSelected ? "#76D14B" : "#CBD5E1"} />
-                                <span className={`text-[10px] uppercase tracking-widest ${isSelected ? 'text-[#76D14B]' : 'text-gray-400'}`}>
+                                <Icon size={28} strokeWidth={1} className={isSelected ? "text-primary" : "text-gray-300"} />
+                                <span className={`text-[10px] uppercase tracking-widest ${isSelected ? 'text-primary' : 'text-gray-400'}`}>
                                     {goal.label}
                                 </span>
                                 {isSelected && (
                                     <motion.div
                                         layoutId="check"
-                                        className="w-2 h-2 rounded-full bg-[#76D14B]"
+                                        className="w-2 h-2 rounded-full bg-primary"
                                     />
                                 )}
                             </motion.button>

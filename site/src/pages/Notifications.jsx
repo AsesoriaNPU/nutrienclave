@@ -2,82 +2,26 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Bell, CheckCheck, Flame, TrendingUp, MessageSquare, Utensils, Activity, ShoppingCart, User } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useNutri } from '../context/NutriContext';
 
-const initialNotifications = [
-    {
-        id: 1,
-        type: 'ai',
-        icon: TrendingUp,
-        color: '#76D14B',
-        title: 'Tu Bio-Enclave Score mejoró',
-        body: 'Subiste 8 puntos esta semana. Tu ritmo circadiano está en sincronía perfecta.',
-        time: 'Hace 10 min',
-        read: false,
-    },
-    {
-        id: 2,
-        type: 'meal',
-        icon: Utensils,
-        color: '#F59E0B',
-        title: 'Hora del almuerzo',
-        body: 'Tu plan nutricional sugiere: Bowl de Quinoa con Verduras (320 kcal).',
-        time: 'Hace 1 hora',
-        read: false,
-    },
-    {
-        id: 3,
-        type: 'hydration',
-        icon: Flame,
-        color: '#0EA5E9',
-        title: 'Hidratación',
-        body: 'Has bebido solo 1.2L hoy. Tu objetivo es 2.5L. ¡Recuerda hidratarte!',
-        time: 'Hace 2 horas',
-        read: false,
-    },
-    {
-        id: 4,
-        type: 'chat',
-        icon: MessageSquare,
-        color: '#2563EB',
-        title: 'Nuevo insight de tu IA',
-        body: 'El magnesio antes de dormir puede mejorar tu calidad de sueño un 23% según tu historial.',
-        time: 'Ayer',
-        read: true,
-    },
-    {
-        id: 5,
-        type: 'ai',
-        icon: TrendingUp,
-        color: '#76D14B',
-        title: 'Semana completada',
-        body: '¡Enhorabuena! Completaste el 87% de tu plan nutricional esta semana.',
-        time: 'Hace 2 días',
-        read: true,
-    },
-    {
-        id: 6,
-        type: 'meal',
-        icon: Utensils,
-        color: '#F59E0B',
-        title: 'Receta recomendada',
-        body: 'Basado en tus biomarcadores: Salmón al vapor con Espárragos es ideal para hoy.',
-        time: 'Hace 3 días',
-        read: true,
-    },
-];
+const IconMap = {
+    TrendingUp, Utensils, Flame, MessageSquare, Bell, Award
+};
+
+// initialNotifications moved to mockData.ts
 
 const Notifications = () => {
     const navigate = useNavigate();
-    const [notifications, setNotifications] = useState(initialNotifications);
+    const { notifications, markNotificationRead, markAllNotificationsRead } = useNutri();
 
     const unreadCount = notifications.filter(n => !n.read).length;
 
     const markAllRead = () => {
-        setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+        markAllNotificationsRead();
     };
 
     const markRead = (id) => {
-        setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+        markNotificationRead(id);
     };
 
     return (
@@ -114,7 +58,7 @@ const Notifications = () => {
             <main className="p-6 space-y-3 max-w-2xl mx-auto">
                 <AnimatePresence>
                     {notifications.map((notif, i) => {
-                        const Icon = notif.icon;
+                        const Icon = IconMap[notif.icon] || Bell;
                         return (
                             <motion.div
                                 key={notif.id}

@@ -22,7 +22,7 @@ const OnboardingStep5 = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-white">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-zen-bg">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ const OnboardingStep5 = () => {
                             value={formData.name}
                             onChange={handleChange}
                             placeholder="Ej. Angel Benito"
-                            className="w-full border-b border-gray-100 py-2 font-light focus:border-[#76D14B] transition-colors"
+                            className="w-full border-b border-gray-100 border-opacity-30 py-2 font-light focus:border-primary bg-transparent text-gray-700 transition-colors outline-none"
                         />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -52,7 +52,7 @@ const OnboardingStep5 = () => {
                             value={formData.email}
                             onChange={handleChange}
                             placeholder="tu@email.com"
-                            className="w-full border-b border-gray-100 py-2 font-light focus:border-[#76D14B] transition-colors"
+                            className="w-full border-b border-gray-100 border-opacity-30 py-2 font-light focus:border-primary bg-transparent text-gray-700 transition-colors outline-none"
                         />
                     </div>
                 </div>

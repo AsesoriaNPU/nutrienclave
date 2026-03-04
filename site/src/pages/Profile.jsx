@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 import { User, Settings, Shield, Smartphone, LogOut, ArrowLeft, ChevronRight, Mail, Phone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useNutri } from '../context/NutriContext';
+import { SafeStorage } from '../utils/SafeStorage';
 
 const Profile = () => {
     const navigate = useNavigate();
     const { userProfile, updateProfile } = useNutri();
 
     const handleLogout = () => {
-        localStorage.removeItem('nutri_profile');
+        SafeStorage.clear();
         window.location.href = '/'; // Reset everything
     };
 

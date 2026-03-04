@@ -15,7 +15,10 @@ const SafeSpace = () => {
     const handleSave = () => {
         addEmotionalLog({ hunger, stress, anxiety });
         setSaved(true);
-        setTimeout(() => navigate('/dashboard'), 1500);
+        // Reset saved state after a delay or navigate
+        setTimeout(() => {
+            navigate('/dashboard');
+        }, 2000);
     };
 
     const Slider = ({ label, value, onChange, icon: Icon, color }) => (
@@ -27,14 +30,16 @@ const SafeSpace = () => {
                 </div>
                 <span className="text-lg font-extralight text-primary">{value}</span>
             </div>
-            <input
-                type="range"
-                min="1"
-                max="10"
-                value={value}
-                onChange={(e) => onChange(parseInt(e.target.value))}
-                className="w-full h-1 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-primary"
-            />
+            <div className="relative pt-1">
+                <input
+                    type="range"
+                    min="1"
+                    max="10"
+                    value={value}
+                    onChange={(e) => onChange(parseInt(e.target.value))}
+                    className="w-full h-1 bg-gray-400 bg-opacity-10 rounded-lg appearance-none cursor-pointer accent-primary"
+                />
+            </div>
             <div className="flex justify-between text-[10px] text-gray-300 uppercase tracking-tighter">
                 <span>Bajo</span>
                 <span>Óptimo</span>
@@ -53,10 +58,14 @@ const SafeSpace = () => {
             </header>
 
             <main className="flex-1 p-6 space-y-12 max-w-2xl mx-auto w-full flex flex-col justify-center">
-                <div className="text-center space-y-2">
-                    <h1 className="text-3xl font-extralight tracking-tight text-gray-800">Sintonía Emocional</h1>
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center space-y-2"
+                >
+                    <h1 className="text-3xl font-extralight tracking-tight" style={{ color: 'var(--color-text)' }}>Sintonía Emocional</h1>
                     <p className="text-xs text-gray-400 font-light">Tus emociones impactan tu metabolismo. Regístralas para una IA más precisa.</p>
-                </div>
+                </motion.div>
 
                 <div className="space-y-10">
                     <Slider
@@ -83,18 +92,28 @@ const SafeSpace = () => {
                 </div>
 
                 <div className="pt-8">
-                    <button
+                    <motion.button
+                        whileTap={{ scale: 0.98 }}
                         onClick={handleSave}
                         disabled={saved}
-                        className={`zen-pill-button primary w-full justify-center gap-3 py-4 ${saved ? 'bg-primary-soft text-primary' : ''}`}
+                        className={`zen-pill-button primary w-full justify-center gap-3 py-4 transition-all duration-500 ${saved ? 'bg-primary bg-opacity-10 text-primary border-primary' : ''}`}
                     >
-                        {saved ? 'DATOS SINCRONIZADOS' : (
+                        {saved ? (
+                            <motion.div
+                                initial={{ scale: 0.5, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                className="flex items-center gap-2"
+                            >
+                                <Sparkles size={18} />
+                                <span>DATOS SINCRONIZADOS</span>
+                            </motion.div>
+                        ) : (
                             <>
                                 <Save size={18} strokeWidth={1} />
                                 <span>GUARDAR ESTADO</span>
                             </>
                         )}
-                    </button>
+                    </motion.button>
                 </div>
             </main>
         </div>

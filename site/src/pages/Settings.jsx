@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Bell, Moon, Shield, ChevronRight, Globe, Smartphone, Trash2, LogOut, User } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useNutri } from '../context/NutriContext';
+import { SafeStorage } from '../utils/SafeStorage';
 
 const Toggle = ({ value, onChange }) => (
     <button
@@ -11,7 +13,7 @@ const Toggle = ({ value, onChange }) => (
     >
         <div
             className="w-full h-full rounded-full transition-all"
-            style={{ backgroundColor: value ? '#76D14B' : '#E2E8F0' }}
+            style={{ backgroundColor: value ? 'var(--color-primary)' : 'rgba(156, 163, 175, 0.2)' }}
         />
         <div
             className="absolute top-1 rounded-full bg-white shadow-sm transition-all"
@@ -20,8 +22,8 @@ const Toggle = ({ value, onChange }) => (
     </button>
 );
 
-const SettingRow = ({ icon: Icon, color = '#76D14B', label, sublabel, toggle, value, onChange, chevron, danger }) => (
-    <div className={`flex items-center justify-between py-4 border-b border-gray-50 ${danger ? 'cursor-pointer' : ''}`}>
+const SettingRow = ({ icon: Icon, color = 'var(--color-primary)', label, sublabel, toggle, value, onChange, chevron, danger, onClick }) => (
+    <div onClick={onClick} className={`flex items-center justify-between py-4 border-b border-gray-400 border-opacity-10 ${danger || onClick ? 'cursor-pointer' : ''}`}>
         <div className="flex items-center gap-4">
             <div
                 className="w-9 h-9 rounded-xl flex items-center justify-center"
@@ -35,22 +37,27 @@ const SettingRow = ({ icon: Icon, color = '#76D14B', label, sublabel, toggle, va
             </div>
         </div>
         {toggle && <Toggle value={value} onChange={onChange} />}
-        {chevron && <ChevronRight size={15} color="#CBD5E1" />}
+        {chevron && <ChevronRight size={15} className="text-gray-300" />}
     </div>
 );
 
 const Settings = () => {
     const navigate = useNavigate();
-    const [prefs, setPrefs] = useState({
-        pushNotifications: true,
-        mealReminders: true,
-        hydrationAlerts: true,
-        darkMode: false,
-        biometrics: true,
-        weeklyReport: true,
-    });
+    const { darkMode, toggleDarkMode, settings, updateSettings } = useNutri();
 
-    const set = key => val => setPrefs(p => ({ ...p, [key]: val }));
+    const set = key => val => updateSettings({ [key]: val });
+
+    const handleLogout = () => {
+        SafeStorage.clear();
+        window.location.href = '/';
+    };
+
+    const handleDeleteAccount = () => {
+        if (window.confirm('¿Estás seguro? Esta acción eliminará todos tus datos y no se puede deshacer.')) {
+            SafeStorage.clear();
+            window.location.href = '/';
+        }
+    };
 
     return (
         <div className="min-h-screen bg-zen-bg pb-24">
@@ -82,10 +89,10 @@ const Settings = () => {
                 <section>
                     <p className="text-zen-label text-gray-300 uppercase tracking-widest mb-3">Notificaciones</p>
                     <div className="zen-card px-4">
-                        <SettingRow icon={Bell} color="#F59E0B" label="Notificaciones push" toggle value={prefs.pushNotifications} onChange={set('pushNotifications')} />
-                        <SettingRow icon={Bell} color="#76D14B" label="Recordatorios de comida" sublabel="Desayuno, almuerzo y cena" toggle value={prefs.mealReminders} onChange={set('mealReminders')} />
-                        <SettingRow icon={Bell} color="#0EA5E9" label="Alertas de hidratación" toggle value={prefs.hydrationAlerts} onChange={set('hydrationAlerts')} />
-                        <SettingRow icon={Bell} color="#7C3AED" label="Informe semanal" sublabel="Cada lunes" toggle value={prefs.weeklyReport} onChange={set('weeklyReport')} />
+                        <SettingRow icon={Bell} color="#F59E0B" label="Notificaciones push" toggle value={settings.pushNotifications} onChange={set('pushNotifications')} />
+                        <SettingRow icon={Bell} color="#76D14B" label="Recordatorios de comida" sublabel="Desayuno, almuerzo y cena" toggle value={settings.mealReminders} onChange={set('mealReminders')} />
+                        <SettingRow icon={Bell} color="#0EA5E9" label="Alertas de hidratación" toggle value={settings.hydrationAlerts} onChange={set('hydrationAlerts')} />
+                        <SettingRow icon={Bell} color="#7C3AED" label="Informe semanal" sublabel="Cada lunes" toggle value={settings.weeklyReport} onChange={set('weeklyReport')} />
                     </div>
                 </section>
 
@@ -93,8 +100,8 @@ const Settings = () => {
                 <section>
                     <p className="text-zen-label text-gray-300 uppercase tracking-widest mb-3">Preferencias</p>
                     <div className="zen-card px-4">
-                        <SettingRow icon={Moon} color="#7C3AED" label="Modo oscuro" toggle value={prefs.darkMode} onChange={set('darkMode')} />
-                        <SettingRow icon={Smartphone} color="#10B981" label="Autenticación biométrica" toggle value={prefs.biometrics} onChange={set('biometrics')} />
+                        <SettingRow icon={Moon} color="var(--color-primary)" label="Modo oscuro" toggle value={darkMode} onChange={toggleDarkMode} />
+                        <SettingRow icon={Smartphone} color="var(--color-primary)" label="Autenticación biométrica" toggle value={settings.biometrics} onChange={set('biometrics')} />
                     </div>
                 </section>
 
@@ -102,8 +109,8 @@ const Settings = () => {
                 <section>
                     <p className="text-zen-label text-gray-300 uppercase tracking-widest mb-3">Sesión</p>
                     <div className="zen-card px-4">
-                        <SettingRow icon={LogOut} label="Cerrar sesión" danger chevron />
-                        <SettingRow icon={Trash2} label="Eliminar cuenta" sublabel="Acción irreversible" danger chevron />
+                        <SettingRow icon={LogOut} label="Cerrar sesión" danger chevron onClick={handleLogout} />
+                        <SettingRow icon={Trash2} label="Eliminar cuenta" sublabel="Acción irreversible" danger chevron onClick={handleDeleteAccount} />
                     </div>
                 </section>
 
