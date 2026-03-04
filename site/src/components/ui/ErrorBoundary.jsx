@@ -13,13 +13,16 @@ class ErrorBoundary extends Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        // Aquí podrías enviar el error a un servicio de logging externo
-        console.error("Enclave Error Boundary caught an error:", error, errorInfo);
+        // Enviar a consola con detalle máximo para depuración remota
+        console.group("🆘 Error Crítico en el Enclave");
+        console.error("Mensaje:", error.message);
+        console.error("Stack:", error.stack);
+        console.error("Component Stack:", errorInfo.componentStack);
+        console.groupEnd();
     }
 
     handleReset = () => {
-        // En caso crítico, limpiar almacenamiento y recargar
-        // Pero primero intentamos solo recargar la página
+        // Solo recarga para intentar recuperación suave
         window.location.reload();
     };
 

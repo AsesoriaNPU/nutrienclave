@@ -163,57 +163,77 @@ export const NutriProvider = ({ children }) => {
         setSettings(prev => ({ ...prev, ...newSettings }));
     };
 
-    // Achievement & Notification Engine
+    // Achievement & Notification Engine - Refactored for Stability
     useEffect(() => {
         const checkAchievements = () => {
+            // Defensive guards for essential data
+            if (!userProfile || !dailyStats || !dailyStats.water || !dailyStats.calories) {
+                console.warn('NutriEnclave: Skipping achievement check due to missing stats data');
+                return;
+            }
+
             setAchievements(prev => {
+                if (!prev || !Array.isArray(prev)) return initialAchievements;
+
                 let updated = false;
                 const next = prev.map(ach => {
-                    let progress = ach.progress;
-                    let current = ach.current;
-                    let unlocked = ach.unlocked;
+                    if (!ach || ach.unlocked) return ach;
 
-                    if (unlocked) return ach;
+                    let progress = ach.progress || 0;
+                    let current = ach.current || 0;
+                    let unlocked = false;
 
-                    // Logic for specific achievements
-                    if (ach.id === 'water-goal') {
-                        // Check last 7 days of statsHistory for days where water goal was met
-                        const daysMet = userProfile.statsHistory.filter(h => h.stats.water.current >= h.stats.water.goal).length;
-                        // Add today if met
-                        const todayMet = dailyStats.water.current >= dailyStats.water.goal ? 1 : 0;
-                        current = daysMet + todayMet;
-                        progress = Math.min(Math.round((current / ach.target) * 100), 100);
-                    }
+                    // Logic for specific achievements with safety checks
+                    try {
+                        if (ach.id === 'water-goal') {
+                            const history = userProfile.statsHistory || [];
+                            const daysMet = history.filter(h => h?.stats?.water?.current >= (h?.stats?.water?.goal || 2.5)).length;
+                            const todayMet = dailyStats.water.current >= dailyStats.water.goal ? 1 : 0;
+                            current = daysMet + todayMet;
+                            progress = Math.min(Math.round((current / (ach.target || 5)) * 100), 100);
+                        }
 
-                    if (ach.id === 'bio-score-90') {
-                        const currentScore = calculateBioScore(userProfile, dailyStats);
-                        current = currentScore;
-                        progress = Math.min(Math.round((current / ach.target) * 100), 100);
-                    }
+                        if (ach.id === 'bio-score-90') {
+                            const currentScore = calculateBioScore(userProfile, dailyStats);
+                            current = currentScore;
+                            progress = Math.min(Math.round((current / (ach.target || 90)) * 100), 100);
+                        }
 
-                    if (ach.id === 'streak-7') {
-                        // Simple logic: days in statsHistory + today if calories met
-                        const daysMet = userProfile.statsHistory.filter(h => h.stats.calories.current >= h.stats.calories.goal * 0.8).length;
-                        const todayMet = dailyStats.calories.current >= dailyStats.calories.goal * 0.8 ? 1 : 0;
-                        current = daysMet + todayMet;
-                        progress = Math.min(Math.round((current / ach.target) * 100), 100);
-                    }
+                        if (ach.id === 'streak-7') {
+                            const history = userProfile.statsHistory || [];
+                            const daysMet = history.filter(h => h?.stats?.calories?.current >= (h?.stats?.calories?.goal || 2000) * 0.8).length;
+                            const todayMet = dailyStats.calories.current >= dailyStats.calories.goal * 0.8 ? 1 : 0;
+                            current = daysMet + todayMet;
+                            progress = Math.min(Math.round((current / (ach.target || 7)) * 100), 100);
+                        }
 
-                    if (progress >= 100 && !unlocked) {
-                        unlocked = true;
-                        updated = true;
-                        addNotification({
-                            type: 'achievement',
-                            title: '¡Logro Desbloqueado!',
-                            body: `Has conseguido: ${ach.title}. +${ach.xp} XP`,
-                            color: ach.color,
-                            icon: 'Award'
-                        });
+                        if (progress >= 100) {
+                            unlocked = true;
+                            // Add notification in the next tick to avoid state update loops during render/effect
+                            setTimeout(() => {
+                                addNotification({
+                                    type: 'achievement',
+                                    title: '¡Logro Desbloqueado!',
+                                    body: `Has conseguido: ${ach.title}. +${ach.xp} XP`,
+                                    color: ach.color,
+                                    icon: 'Award'
+                                });
+                            }, 0);
+                        }
+                    } catch (e) {
+                        console.error(`Error processing achievement ${ach.id}:`, e);
+                        return ach;
                     }
 
                     if (current !== ach.current || progress !== ach.progress || unlocked !== ach.unlocked) {
                         updated = true;
-                        return { ...ach, current, progress, unlocked, date: unlocked ? 'Recién desbloqueado' : ach.date };
+                        return {
+                            ...ach,
+                            current,
+                            progress,
+                            unlocked,
+                            date: unlocked ? new Date().toLocaleDateString('es-ES') : ach.date
+                        };
                     }
                     return ach;
                 });
@@ -221,9 +241,10 @@ export const NutriProvider = ({ children }) => {
             });
         };
 
-        const timer = setTimeout(checkAchievements, 1000); // Debounce
+        // Use a small delay for batching and stabilization
+        const timer = setTimeout(checkAchievements, 1500);
         return () => clearTimeout(timer);
-    }, [dailyStats, userProfile.statsHistory]);
+    }, [dailyStats.water?.current, dailyStats.calories?.current, userProfile.statsHistory?.length, addNotification]);
 
     // Hydration alerts based on real data
     useEffect(() => {
