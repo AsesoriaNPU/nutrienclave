@@ -19,6 +19,7 @@ const loadDailyStats = () => {
 };
 
 export const NutriProvider = ({ children }) => {
+    console.log('NutriEnclave: NutriProvider mounting...');
     const [userProfile, setUserProfile] = useState(() => {
         return SafeStorage.get('nutri_profile', {
             name: "",
