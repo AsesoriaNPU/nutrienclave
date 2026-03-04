@@ -5,10 +5,26 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useNutri } from '../context/NutriContext';
 
 const mealPlan = {
-    // ... same data
+    "Lunes": {
+        breakfast: { name: "Porridge de Avena y Chía", kcal: 320, icon: "Sun", color: "#F59E0B", recipeId: "1" },
+        lunch: { name: "Bowl de Quinoa y Vegetales", kcal: 450, icon: "Utensils", color: "#76D14B", recipeId: "2" },
+        snack: { name: "Yogur Griego con Nueces", kcal: 200, icon: "Sun", color: "#F59E0B", recipeId: "4" },
+        dinner: { name: "Salmón al vapor con Espárragos", kcal: 380, icon: "Moon", color: "#2563EB", recipeId: "1" }
+    },
+    "Martes": {
+        breakfast: { name: "Tostada Integral con Aguacate", kcal: 280, icon: "Sun", color: "#F59E0B", recipeId: "4" },
+        lunch: { name: "Pollo con Cúrcuma y Brócoli", kcal: 420, icon: "Utensils", color: "#76D14B", recipeId: "3" },
+        snack: { name: "Fruta fresca de temporada", kcal: 150, icon: "Sun", color: "#F59E0B", recipeId: "1" },
+        dinner: { name: "Crema de Calabaza", kcal: 250, icon: "Moon", color: "#2563EB", recipeId: "2" }
+    }
 };
 
-// ... same icons
+const mealIcons = {
+    breakfast: { icon: Sun, color: "#F59E0B", label: "Desayuno" },
+    lunch: { icon: Utensils, color: "#76D14B", label: "Almuerzo" },
+    snack: { icon: Sunset, color: "#F59E0B", label: "Snack" },
+    dinner: { icon: Moon, color: "#2563EB", label: "Cena" }
+};
 
 const MealPlan = () => {
     const navigate = useNavigate();
