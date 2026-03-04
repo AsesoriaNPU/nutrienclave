@@ -1,4 +1,14 @@
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+    ArrowLeft,
+    Plus,
+    X,
+    Trash2,
+    Circle,
+    CheckCircle2
+} from 'lucide-react';
 import { useNutri } from '../context/NutriContext';
 import { groceryCategories } from '../data/mockData';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Thermometer, Droplets, Wind, Save } from 'lucide-react';
+import { ArrowLeft, Thermometer, Droplets, Wind, Save, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useNutri } from '../context/NutriContext';
 

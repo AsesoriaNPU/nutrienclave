@@ -1,4 +1,7 @@
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Search, Star, Clock, Flame } from 'lucide-react';
 import { useNutri } from '../context/NutriContext';
 import { recipes } from '../data/mockData';
 
