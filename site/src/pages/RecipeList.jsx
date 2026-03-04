@@ -86,7 +86,7 @@ const RecipeList = () => {
                                         />
                                         <div className="absolute top-2 right-2 flex flex-col gap-2">
                                             <div className="bg-white bg-opacity-90 rounded-full px-2 py-1 flex items-center gap-1">
-                                                <Star size={10} color="#76D14B" fill="#76D14B" />
+                                                <Star size={10} color="#059669" fill="#059669" />
                                                 <span style={{ fontSize: '0.65rem' }} className="font-medium text-gray-700">{recipe.rating}</span>
                                             </div>
                                             <button
@@ -96,7 +96,7 @@ const RecipeList = () => {
                                                 }}
                                                 className="w-8 h-8 rounded-full bg-white bg-opacity-90 flex items-center justify-center border-none cursor-pointer shadow-sm text-primary"
                                             >
-                                                <Star size={14} fill={Array.isArray(favorites) && favorites.includes(recipe.id) ? "#76D14B" : "transparent"} strokeWidth={1.5} />
+                                                <Star size={14} fill={Array.isArray(favorites) && favorites.includes(recipe.id) ? "#059669" : "transparent"} strokeWidth={1.5} />
                                             </button>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@ const RecipeList = () => {
             {/* Bottom Nav */}
             <nav className="fixed bottom-0 left-0 right-0 p-4 bg-white glass border-t border-gray-100 flex justify-around items-center">
                 <Link to="/dashboard"><Activity size={24} strokeWidth={1} color="#CBD5E1" /></Link>
-                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#76D14B" /></Link>
+                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#059669" /></Link>
                 <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/profile"><User size={24} strokeWidth={1} color="#CBD5E1" /></Link>

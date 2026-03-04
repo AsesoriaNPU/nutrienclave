@@ -68,7 +68,7 @@ const OnboardingStep3 = () => {
                             value={formData.weight}
                             onChange={handleChange}
                             placeholder="70"
-                            className="w-full border-b border-gray-100 py-2 font-light focus:border-[#76D14B] transition-colors outline-none"
+                            className="w-full border-b border-gray-100 py-2 font-light focus:border-[#059669] transition-colors outline-none"
                         />
                     </div>
                     <div className="flex flex-col gap-2 text-left">

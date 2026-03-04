@@ -9,18 +9,22 @@
 }
 
 [data-theme='light'] {
-  --color-primary: #76D14B;
-  --color-primary-soft: rgba(118, 209, 75, 0.1);
-  --color-primary-very-soft: rgba(118, 209, 75, 0.05);
-  --color-primary-hover: #5BB33A;
+  --color-primary: #059669;
+  /* Emerald Green for high contrast */
+  --color-primary-soft: rgba(5, 150, 105, 0.1);
+  --color-primary-very-soft: rgba(5, 150, 105, 0.05);
+  --color-primary-hover: #047857;
   --color-secondary: #2563EB;
   --color-secondary-soft: rgba(37, 99, 235, 0.1);
-  --color-text: #1B2733;
-  --color-text-light: #64748B;
-  --color-bg: #FFFFFF;
-  --color-bg-alt: #F8F9FA;
-  --color-border: #E2E8F0;
-  --glass-bg: rgba(255, 255, 255, 0.7);
+  --color-text: #111827;
+  /* Darker, high contrast text */
+  --color-text-light: #4B5563;
+  /* Darker gray for legibility */
+  --color-bg: #F3F4F6;
+  /* Slight tint for background */
+  --color-bg-alt: #E5E7EB;
+  --color-border: #E5E7EB;
+  --glass-bg: rgba(255, 255, 255, 0.9);
 }
 
 [data-theme='dark'] {
@@ -67,13 +71,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 300;
+  font-weight: 700;
   letter-spacing: -0.02em;
+  color: var(--color-text);
 }
 
 /* Zen Components */
 .zen-card {
-  background: var(--color-bg);
+  background: #FFFFFF;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
   padding: 1.5rem;
@@ -90,10 +95,10 @@ h6 {
 .zen-pill-button {
   border-radius: var(--radius-button);
   padding: 0.75rem 1.75rem;
-  border: 1px solid var(--color-primary);
-  background: transparent;
+  border: 1px solid var(--color-border);
+  background: #FFFFFF;
   color: var(--color-text);
-  font-weight: 400;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,18 +106,20 @@ h6 {
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .zen-pill-button:hover {
-  background: var(--color-bg-alt);
+  background: var(--color-bg);
   transform: translateY(-1px);
 }
 
 .zen-pill-button.primary {
-  background: var(--color-primary);
+  background: #1F2937;
+  /* Solid Dark Button */
   color: white;
-  border-color: var(--color-primary);
+  border-color: #1F2937;
+  font-weight: 600;
 }
 
 [data-theme='dark'] .zen-pill-button {
@@ -288,15 +295,16 @@ h6 {
 }
 
 .text-gray-300 {
-  color: #CBD5E1;
+  color: #9CA3AF;
 }
 
 .text-gray-400 {
-  color: #94A3B8;
+  color: #4B5563;
+  /* Darker for high contrast */
 }
 
 .text-gray-700 {
-  color: #334155;
+  color: #1F2937;
 }
 
 .text-xs {
@@ -328,15 +336,15 @@ h6 {
 }
 
 .font-light {
-  font-weight: 300;
-}
-
-.font-medium {
   font-weight: 500;
 }
 
+.font-medium {
+  font-weight: 600;
+}
+
 .font-extralight {
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .italic {
@@ -658,15 +666,15 @@ h6 {
 }
 
 .text-gray-500 {
-  color: #6B7280;
+  color: #4B5563;
 }
 
 .text-gray-600 {
-  color: #475569;
+  color: #374151;
 }
 
 .text-gray-800 {
-  color: #1E293B;
+  color: #111827;
 }
 
 .bg-transparent {

@@ -10,11 +10,11 @@ const LandingPage = () => {
                 <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
                     <div className="flex items-center gap-3 group cursor-pointer">
                         <div className="relative w-10 h-10 bg-[#2B59FF] rounded-full flex items-center justify-center overflow-hidden">
-                            <span className="material-symbols-outlined text-[#76D14B] text-2xl z-10">energy_savings_leaf</span>
+                            <span className="material-symbols-outlined text-[#059669] text-2xl z-10">energy_savings_leaf</span>
                             <div className="absolute inset-0 border-[1.5px] border-white/20 rounded-full"></div>
                         </div>
                         <h2 className="text-[#1B2733] text-xl font-extrabold tracking-tight">
-                            <span className="text-[#76D14B]">Nutri</span><span className="text-[#2B59FF]">Enclave</span>
+                            <span className="text-[#059669]">Nutri</span><span className="text-[#2B59FF]">Enclave</span>
                         </h2>
                     </div>
                     <nav className="hidden lg:flex items-center gap-10">
@@ -23,7 +23,7 @@ const LandingPage = () => {
                         <a className="text-[#1B2733] text-sm font-semibold hover:text-[#2B59FF] transition-colors" href="#">Servicios</a>
                         <a className="text-[#1B2733] text-sm font-semibold hover:text-[#2B59FF] transition-colors" href="#">Blog</a>
                     </nav>
-                    <button className="bg-[#76D14B] hover:bg-opacity-90 text-[#1B2733] px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm active:scale-95">
+                    <button className="bg-[#059669] hover:bg-opacity-90 text-[#1B2733] px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm active:scale-95">
                         Llamada telefónica
                     </button>
                 </div>
@@ -38,7 +38,7 @@ const LandingPage = () => {
                                 Bienestar Digital 24/7
                             </div>
                             <h1 className="text-4xl lg:text-6xl font-black text-[#1B2733] leading-[1.1] mb-6">
-                                Salud, <span className="text-[#76D14B]">enclave</span> <span className="text-[#2B59FF]">emocional</span>
+                                Salud, <span className="text-[#059669]">enclave</span> <span className="text-[#2B59FF]">emocional</span>
                             </h1>
                             <p className="text-lg lg:text-xl text-gray-600 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0">
                                 La app que entiende no solo qué comes, sino cómo te sientes. Transforma tu relación con la alimentación mediante tecnología de vanguardia y bienestar integral.
@@ -46,7 +46,7 @@ const LandingPage = () => {
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                                 <button
                                     onClick={() => navigate('/onboarding/1')}
-                                    className="bg-[#76D14B] hover:bg-opacity-90 text-[#1B2733] text-lg font-bold px-10 py-5 rounded-full transition-all shadow-lg active:scale-95"
+                                    className="bg-[#059669] hover:bg-opacity-90 text-[#1B2733] text-lg font-bold px-10 py-5 rounded-full transition-all shadow-lg active:scale-95"
                                 >
                                     Empezar ahora
                                 </button>
@@ -97,10 +97,10 @@ const LandingPage = () => {
                 <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-10">
                     <div className="flex items-center gap-3">
                         <div className="relative w-8 h-8 bg-[#2B59FF] rounded-full flex items-center justify-center overflow-hidden">
-                            <span className="material-symbols-outlined text-[#76D14B] text-lg z-10">energy_savings_leaf</span>
+                            <span className="material-symbols-outlined text-[#059669] text-lg z-10">energy_savings_leaf</span>
                         </div>
                         <h2 className="text-[#1B2733] text-lg font-extrabold tracking-tight">
-                            <span className="text-[#76D14B]">Nutri</span><span className="text-[#2B59FF]">Enclave</span>
+                            <span className="text-[#059669]">Nutri</span><span className="text-[#2B59FF]">Enclave</span>
                         </h2>
                     </div>
                     <p className="text-gray-500 text-sm">© 2024 NutriEnclave. Todos los derechos reservados.</p>
@@ -111,7 +111,7 @@ const LandingPage = () => {
 };
 
 const FeatureCard = ({ icon, title, description, color }) => {
-    const colorClass = color === 'primary' ? 'text-[#76D14B] bg-[#76D14B]/10 group-hover:bg-[#76D14B]' : 'text-[#2B59FF] bg-[#2B59FF]/10 group-hover:bg-[#2B59FF]';
+    const colorClass = color === 'primary' ? 'text-[#059669] bg-[#059669]/10 group-hover:bg-[#059669]' : 'text-[#2B59FF] bg-[#2B59FF]/10 group-hover:bg-[#2B59FF]';
 
     return (
         <div className="bg-white p-8 lg:p-10 rounded-[12px] shadow-sm hover:shadow-md transition-shadow border border-gray-50 group">

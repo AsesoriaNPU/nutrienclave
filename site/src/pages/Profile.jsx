@@ -32,7 +32,7 @@ const Profile = () => {
             <main className="flex-1 p-6 space-y-8 max-w-2xl mx-auto w-full">
                 <div className="flex flex-col items-center text-center space-y-4">
                     <div className="rounded-full bg-primary-soft flex items-center justify-center border border-primary border-opacity-20 shadow-sm relative" style={{ width: '96px', height: '96px' }}>
-                        <User size={40} color="#76D14B" strokeWidth={1} />
+                        <User size={40} color="#059669" strokeWidth={1} />
                         <div className="absolute bottom-1 right-1 w-5 h-5 bg-primary rounded-full border-2 border-white flex items-center justify-center" style={{ width: '20px', height: '20px' }}>
                             <Shield size={10} color="white" />
                         </div>
@@ -49,7 +49,7 @@ const Profile = () => {
                         <div className="text-zen-label text-gray-400 truncate w-full">{userProfile.email || 'sin@email.com'}</div>
                     </div>
                     <div className="zen-card p-4 flex flex-col items-center text-center space-y-2">
-                        <Phone size={16} color="#76D14B" strokeWidth={1} />
+                        <Phone size={16} color="#059669" strokeWidth={1} />
                         <div className="text-zen-label text-gray-400">Datos Protegidos</div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@ const Profile = () => {
                 <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#CBD5E1" /></Link>
-                <Link to="/profile"><User size={24} strokeWidth={1} color="#76D14B" /></Link>
+                <Link to="/profile"><User size={24} strokeWidth={1} color="#059669" /></Link>
             </nav>
         </div>
     );

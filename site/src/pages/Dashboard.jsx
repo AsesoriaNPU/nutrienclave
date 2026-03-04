@@ -76,7 +76,7 @@ const Dashboard = () => {
                         <svg className="absolute w-full h-full transform -rotate-90" style={{ left: 0, top: 0 }}>
                             <circle cx="80" cy="80" r="70" fill="none" stroke="#E2E8F0" strokeWidth="1" />
                             <motion.circle
-                                cx="80" cy="80" r="70" fill="none" stroke="#76D14B" strokeWidth="1.5"
+                                cx="80" cy="80" r="70" fill="none" stroke="#059669" strokeWidth="1.5"
                                 strokeDasharray="440"
                                 initial={{ strokeDashoffset: 440 }}
                                 animate={{ strokeDashoffset: strokeOffset }}
@@ -102,7 +102,7 @@ const Dashboard = () => {
                         className="zen-card p-4 space-y-2 cursor-pointer hover:bg-white active:scale-95 transition-all"
                         onClick={() => handleStatClick('steps', 500)}
                     >
-                        <Activity size={16} color="#76D14B" strokeWidth={1} />
+                        <Activity size={16} color="#059669" strokeWidth={1} />
                         <div className="text-xs text-gray-400 flex justify-between">
                             <span>Pasos</span>
                             <span className="text-[8px] opacity-50">+500</span>
@@ -110,7 +110,7 @@ const Dashboard = () => {
                         <div className="text-lg font-light">{stats.steps.current.toLocaleString('es-ES')} <span className="text-zen-label">pasos</span></div>
                         <div className="w-full bg-gray-100 rounded-full h-1">
                             <motion.div
-                                className="bg-[#76D14B] h-1 rounded-full"
+                                className="bg-[#059669] h-1 rounded-full"
                                 initial={{ width: 0 }}
                                 animate={{ width: `${Math.min(stats.steps.current / stats.steps.goal * 100, 100)}%` }}
                             />
@@ -192,7 +192,7 @@ const Dashboard = () => {
                     <div className="zen-card p-4 flex items-center justify-between hover:bg-gray-50 transition-all border-dashed border-primary border-opacity-40">
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center">
-                                <MessageSquare size={18} color="#76D14B" strokeWidth={1} />
+                                <MessageSquare size={18} color="#059669" strokeWidth={1} />
                             </div>
                             <div>
                                 <div className="text-sm font-light">Sintonía Emocional</div>
@@ -225,7 +225,7 @@ const Dashboard = () => {
                     <div className="zen-card p-4 flex items-center justify-between hover:bg-gray-50 transition-all cursor-pointer">
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'rgba(118,209,75,0.1)' }}>
-                                <Utensils size={18} color="#76D14B" strokeWidth={1} />
+                                <Utensils size={18} color="#059669" strokeWidth={1} />
                             </div>
                             <div>
                                 <div className="text-sm font-light">Receta del Día</div>
@@ -256,7 +256,7 @@ const Dashboard = () => {
                     <div className="zen-card p-4 flex items-center justify-between hover:bg-gray-50 transition-all cursor-pointer">
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'rgba(118,209,75,0.1)' }}>
-                                <BookOpen size={18} color="#76D14B" strokeWidth={1} />
+                                <BookOpen size={18} color="#059669" strokeWidth={1} />
                             </div>
                             <div>
                                 <div className="text-sm font-light">Galería de Recetas</div>
@@ -270,7 +270,7 @@ const Dashboard = () => {
 
             {/* Bottom Nav */}
             <nav className="fixed bottom-0 left-0 right-0 p-4 bg-white glass border-t border-gray-100 flex justify-around items-center">
-                <Link to="/dashboard"><Activity size={24} strokeWidth={1} color="#76D14B" /></Link>
+                <Link to="/dashboard"><Activity size={24} strokeWidth={1} color="#059669" /></Link>
                 <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#CBD5E1" /></Link>

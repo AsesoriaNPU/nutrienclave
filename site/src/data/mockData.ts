@@ -210,7 +210,7 @@ export const initialAchievements = [
         current: 0, target: 5, category: 'hidratacion'
     },
     {
-        id: 'bio-score-90', icon: 'Star', color: '#76D14B',
+        id: 'bio-score-90', icon: 'Star', color: '#059669',
         title: 'Bio-Score 90+', subtitle: 'Alcanza un Bio-Enclave Score superior a 90',
         unlocked: false, progress: 0, xp: 200,
         current: 0, target: 90, category: 'score'
@@ -234,7 +234,7 @@ export const initialNotifications = [
         id: 1,
         type: 'ai',
         icon: 'TrendingUp',
-        color: '#76D14B',
+        color: '#059669',
         title: 'Bienvenido al Enclave',
         body: 'Tu sistema biológico está listo para ser optimizado. Empieza registrando tu hidratación.',
         time: 'Ahora',

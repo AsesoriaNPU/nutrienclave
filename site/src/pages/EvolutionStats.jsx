@@ -68,7 +68,7 @@ const EvolutionStats = () => {
     const emotionalStats = useMemo(() => {
         if (!userProfile.emotionalState || userProfile.emotionalState.length === 0) {
             return [
-                { label: 'Control de hambre', value: 0, color: '#76D14B' },
+                { label: 'Control de hambre', value: 0, color: '#059669' },
                 { label: 'Gestión del estrés', value: 0, color: '#2563EB' },
                 { label: 'Nivel de ansiedad', value: 0, color: '#F59E0B' },
             ];
@@ -84,7 +84,7 @@ const EvolutionStats = () => {
         const count = recent.length;
         // Invert stress/anxiety: high value = low stress (for positive visual)
         return [
-            { label: 'Saciabilidad', value: Math.round(avg.hunger / count), color: '#76D14B' },
+            { label: 'Saciabilidad', value: Math.round(avg.hunger / count), color: '#059669' },
             { label: 'Zen Mental', value: 100 - Math.round(avg.stress / count), color: '#2563EB' },
             { label: 'Calma Interior', value: 100 - Math.round(avg.anxiety / count), color: '#F59E0B' },
         ];
@@ -147,7 +147,7 @@ const EvolutionStats = () => {
                             </div>
                         </div>
                         <div className="w-12 h-12 rounded-full bg-primary-soft flex items-center justify-center">
-                            <TrendingUp size={20} color="#76D14B" strokeWidth={1.5} />
+                            <TrendingUp size={20} color="#059669" strokeWidth={1.5} />
                         </div>
                     </div>
 
@@ -174,7 +174,7 @@ const EvolutionStats = () => {
                         value={userProfile.weight || '--'}
                         unit="kg"
                         icon={User}
-                        color="#76D14B"
+                        color="#059669"
                         change={userProfile.weightHistory.length > 1 ? -weightProgress : undefined}
                     />
                     <StatCard
@@ -243,7 +243,7 @@ const EvolutionStats = () => {
                 <Link to="/dashboard"><Activity size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#CBD5E1" /></Link>
-                <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#76D14B" /></Link>
+                <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#059669" /></Link>
                 <Link to="/profile"><User size={24} strokeWidth={1} color="#CBD5E1" /></Link>
             </nav>
         </div>

@@ -73,7 +73,7 @@ const SafeSpace = () => {
                         value={hunger}
                         onChange={setHunger}
                         icon={Thermometer}
-                        color="#76D14B"
+                        color="#059669"
                     />
                     <Slider
                         label="Estrés"

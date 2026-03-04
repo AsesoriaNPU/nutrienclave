@@ -9,7 +9,7 @@ const history = [
         totalKcal: 1380,
         meals: [
             { time: '08:20', type: 'Desayuno', icon: Sun, color: '#F59E0B', name: 'Smoothie verde y tostada de centeno', kcal: 290, macros: { p: 12, c: 38, g: 8 } },
-            { time: '13:45', type: 'Almuerzo', icon: Utensils, color: '#76D14B', name: 'Bowl de Quinoa con Verduras', kcal: 320, macros: { p: 14, c: 45, g: 9 } },
+            { time: '13:45', type: 'Almuerzo', icon: Utensils, color: '#059669', name: 'Bowl de Quinoa con Verduras', kcal: 320, macros: { p: 14, c: 45, g: 9 } },
             { time: '20:10', type: 'Cena', icon: Moon, color: '#2563EB', name: 'Salmón al vapor con Espárragos', kcal: 380, macros: { p: 38, c: 12, g: 16 } },
             { time: '11:00', type: 'Snack', icon: ShoppingBag, color: '#10B981', name: 'Nueces y arándanos', kcal: 180, macros: { p: 4, c: 18, g: 11 } },
             { time: '17:30', type: 'Snack', icon: ShoppingBag, color: '#10B981', name: 'Yogur griego con miel', kcal: 210, macros: { p: 15, c: 22, g: 5 } },
@@ -20,7 +20,7 @@ const history = [
         totalKcal: 1520,
         meals: [
             { time: '09:00', type: 'Desayuno', icon: Sun, color: '#F59E0B', name: 'Porridge de avena con frutos rojos', kcal: 260, macros: { p: 8, c: 42, g: 7 } },
-            { time: '14:00', type: 'Almuerzo', icon: Utensils, color: '#76D14B', name: 'Ensalada Mediterránea con atún', kcal: 290, macros: { p: 28, c: 15, g: 12 } },
+            { time: '14:00', type: 'Almuerzo', icon: Utensils, color: '#059669', name: 'Ensalada Mediterránea con atún', kcal: 290, macros: { p: 28, c: 15, g: 12 } },
             { time: '20:30', type: 'Cena', icon: Moon, color: '#2563EB', name: 'Pollo con Cúrcuma y Verduras', kcal: 420, macros: { p: 42, c: 18, g: 14 } },
             { time: '16:00', type: 'Snack', icon: ShoppingBag, color: '#10B981', name: 'Manzana y mantequilla de almendra', kcal: 190, macros: { p: 5, c: 24, g: 10 } },
             { time: '10:30', type: 'Snack', icon: ShoppingBag, color: '#10B981', name: 'Café con leche de avena', kcal: 80, macros: { p: 2, c: 12, g: 2 } },
@@ -31,7 +31,7 @@ const history = [
         totalKcal: 1290,
         meals: [
             { time: '08:45', type: 'Desayuno', icon: Sun, color: '#F59E0B', name: 'Huevos revueltos con aguacate', kcal: 310, macros: { p: 18, c: 8, g: 22 } },
-            { time: '13:30', type: 'Almuerzo', icon: Utensils, color: '#76D14B', name: 'Crema de Calabaza con Jengibre', kcal: 210, macros: { p: 5, c: 35, g: 7 } },
+            { time: '13:30', type: 'Almuerzo', icon: Utensils, color: '#059669', name: 'Crema de Calabaza con Jengibre', kcal: 210, macros: { p: 5, c: 35, g: 7 } },
             { time: '19:45', type: 'Cena', icon: Moon, color: '#2563EB', name: 'Trucha con Almendras y Limón', kcal: 340, macros: { p: 35, c: 10, g: 18 } },
             { time: '16:30', type: 'Snack', icon: ShoppingBag, color: '#10B981', name: 'Infusión verde y galletas de arroz', kcal: 120, macros: { p: 2, c: 22, g: 3 } },
         ],
@@ -112,7 +112,7 @@ const FoodHistory = () => {
                                                 <span className="text-sm font-light text-primary flex-shrink-0">{meal.kcal} kcal</span>
                                             </div>
                                             <div className="flex gap-1.5 mt-2 flex-wrap">
-                                                <MacroBadge label="P" value={meal.macros.p} color="#76D14B" />
+                                                <MacroBadge label="P" value={meal.macros.p} color="#059669" />
                                                 <MacroBadge label="C" value={meal.macros.c} color="#F59E0B" />
                                                 <MacroBadge label="G" value={meal.macros.g} color="#0EA5E9" />
                                             </div>

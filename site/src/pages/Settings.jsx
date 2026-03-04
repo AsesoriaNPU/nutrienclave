@@ -90,7 +90,7 @@ const Settings = () => {
                     <p className="text-zen-label text-gray-300 uppercase tracking-widest mb-3">Notificaciones</p>
                     <div className="zen-card px-4">
                         <SettingRow icon={Bell} color="#F59E0B" label="Notificaciones push" toggle value={settings.pushNotifications} onChange={set('pushNotifications')} />
-                        <SettingRow icon={Bell} color="#76D14B" label="Recordatorios de comida" sublabel="Desayuno, almuerzo y cena" toggle value={settings.mealReminders} onChange={set('mealReminders')} />
+                        <SettingRow icon={Bell} color="#059669" label="Recordatorios de comida" sublabel="Desayuno, almuerzo y cena" toggle value={settings.mealReminders} onChange={set('mealReminders')} />
                         <SettingRow icon={Bell} color="#0EA5E9" label="Alertas de hidratación" toggle value={settings.hydrationAlerts} onChange={set('hydrationAlerts')} />
                         <SettingRow icon={Bell} color="#7C3AED" label="Informe semanal" sublabel="Cada lunes" toggle value={settings.weeklyReport} onChange={set('weeklyReport')} />
                     </div>

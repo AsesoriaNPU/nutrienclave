@@ -62,7 +62,7 @@ const RecipeDetail = () => {
                             onClick={() => toggleFavorite(recipe.id)}
                             className="w-10 h-10 rounded-full glass flex items-center justify-center border-none cursor-pointer shadow-md text-primary"
                         >
-                            <Star size={18} fill={Array.isArray(favorites) && favorites.includes(recipe.id) ? "#76D14B" : "transparent"} strokeWidth={1.5} />
+                            <Star size={18} fill={Array.isArray(favorites) && favorites.includes(recipe.id) ? "#059669" : "transparent"} strokeWidth={1.5} />
                         </button>
                     </div>
                 </div>
@@ -95,7 +95,7 @@ const RecipeDetail = () => {
                             <span className="text-sm font-light">{recipe.kcal} kcal</span>
                         </div>
                         <div className="flex items-center gap-1.5 text-primary">
-                            <Star size={14} strokeWidth={1.5} fill="#76D14B" />
+                            <Star size={14} strokeWidth={1.5} fill="#059669" />
                             <span className="text-sm font-light">{recipe.rating}</span>
                         </div>
                     </div>
@@ -179,7 +179,7 @@ const RecipeDetail = () => {
             {/* Bottom Nav */}
             <nav className="fixed bottom-0 left-0 right-0 p-4 bg-white glass border-t border-gray-100 flex justify-around items-center">
                 <Link to="/dashboard"><Activity size={24} strokeWidth={1} color="#CBD5E1" /></Link>
-                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#76D14B" /></Link>
+                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#059669" /></Link>
                 <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/profile"><User size={24} strokeWidth={1} color="#CBD5E1" /></Link>
             </nav>

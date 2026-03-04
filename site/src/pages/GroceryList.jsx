@@ -159,7 +159,7 @@ const GroceryList = () => {
             {/* Bottom Nav */}
             <nav className="fixed bottom-0 left-0 right-0 p-4 bg-white glass border-t border-gray-100 flex justify-around items-center">
                 <Link to="/dashboard"><Activity size={24} strokeWidth={1} color="#CBD5E1" /></Link>
-                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#76D14B" /></Link>
+                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#059669" /></Link>
                 <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/profile"><User size={24} strokeWidth={1} color="#CBD5E1" /></Link>

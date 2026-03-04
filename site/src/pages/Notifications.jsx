@@ -99,7 +99,7 @@ const Notifications = () => {
                 {notifications.every(n => n.read) && (
                     <div className="text-center py-12 space-y-3">
                         <div className="w-16 h-16 rounded-full bg-primary-soft flex items-center justify-center mx-auto">
-                            <Bell size={28} color="#76D14B" strokeWidth={1} />
+                            <Bell size={28} color="#059669" strokeWidth={1} />
                         </div>
                         <p className="text-sm font-light text-gray-400">Todo al día</p>
                         <p className="text-zen-label text-gray-300 uppercase tracking-widest">No hay notificaciones pendientes</p>

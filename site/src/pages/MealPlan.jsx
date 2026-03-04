@@ -7,13 +7,13 @@ import { useNutri } from '../context/NutriContext';
 const mealPlan = {
     "Lunes": {
         breakfast: { name: "Porridge de Avena y Chía", kcal: 320, icon: "Sun", color: "#F59E0B", recipeId: "1" },
-        lunch: { name: "Bowl de Quinoa y Vegetales", kcal: 450, icon: "Utensils", color: "#76D14B", recipeId: "2" },
+        lunch: { name: "Bowl de Quinoa y Vegetales", kcal: 450, icon: "Utensils", color: "#059669", recipeId: "2" },
         snack: { name: "Yogur Griego con Nueces", kcal: 200, icon: "Sun", color: "#F59E0B", recipeId: "4" },
         dinner: { name: "Salmón al vapor con Espárragos", kcal: 380, icon: "Moon", color: "#2563EB", recipeId: "1" }
     },
     "Martes": {
         breakfast: { name: "Tostada Integral con Aguacate", kcal: 280, icon: "Sun", color: "#F59E0B", recipeId: "4" },
-        lunch: { name: "Pollo con Cúrcuma y Brócoli", kcal: 420, icon: "Utensils", color: "#76D14B", recipeId: "3" },
+        lunch: { name: "Pollo con Cúrcuma y Brócoli", kcal: 420, icon: "Utensils", color: "#059669", recipeId: "3" },
         snack: { name: "Fruta fresca de temporada", kcal: 150, icon: "Sun", color: "#F59E0B", recipeId: "1" },
         dinner: { name: "Crema de Calabaza", kcal: 250, icon: "Moon", color: "#2563EB", recipeId: "2" }
     }
@@ -21,7 +21,7 @@ const mealPlan = {
 
 const mealIcons = {
     breakfast: { icon: Sun, color: "#F59E0B", label: "Desayuno" },
-    lunch: { icon: Utensils, color: "#76D14B", label: "Almuerzo" },
+    lunch: { icon: Utensils, color: "#059669", label: "Almuerzo" },
     snack: { icon: Sunset, color: "#F59E0B", label: "Snack" },
     dinner: { icon: Moon, color: "#2563EB", label: "Cena" }
 };
@@ -95,7 +95,7 @@ const MealPlan = () => {
                     <div className="w-16 h-16 relative">
                         <svg viewBox="0 0 60 60" className="w-full h-full transform -rotate-90">
                             <circle cx="30" cy="30" r="24" fill="none" stroke="#E2E8F0" strokeWidth="2" />
-                            <circle cx="30" cy="30" r="24" fill="none" stroke="#76D14B" strokeWidth="2"
+                            <circle cx="30" cy="30" r="24" fill="none" stroke="#059669" strokeWidth="2"
                                 strokeDasharray={`${(totalKcal / 2500) * 150} 150`} strokeLinecap="round" />
                         </svg>
                         <div className="absolute inset-0 flex items-center justify-center">
@@ -128,7 +128,7 @@ const MealPlan = () => {
                                             <p className="text-sm font-light text-gray-700 truncate mt-1">{meal.name}</p>
                                         </div>
                                         <div className="flex items-center gap-3 flex-shrink-0">
-                                            <span className="text-sm font-light text-[#76D14B]">{meal.kcal} kcal</span>
+                                            <span className="text-sm font-light text-[#059669]">{meal.kcal} kcal</span>
                                             <ChevronRight size={14} className="text-gray-300" />
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@ const MealPlan = () => {
             {/* Bottom Nav */}
             <nav className="fixed bottom-0 left-0 right-0 p-4 bg-white glass border-t border-gray-100 flex justify-around items-center">
                 <Link to="/dashboard"><Activity size={24} strokeWidth={1} color="#CBD5E1" /></Link>
-                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#76D14B" /></Link>
+                <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#059669" /></Link>
                 <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/profile"><User size={24} strokeWidth={1} color="#CBD5E1" /></Link>

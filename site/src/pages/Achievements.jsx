@@ -131,7 +131,7 @@ const Achievements = () => {
                 <Link to="/grocery-list"><ShoppingCart size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/chat"><MessageSquare size={24} strokeWidth={1} color="#CBD5E1" /></Link>
                 <Link to="/evolution"><TrendingUp size={24} strokeWidth={1} color="#CBD5E1" /></Link>
-                <Link to="/profile"><User size={24} strokeWidth={1} color="#76D14B" /></Link>
+                <Link to="/profile"><User size={24} strokeWidth={1} color="#059669" /></Link>
             </nav>
         </div>
     );
