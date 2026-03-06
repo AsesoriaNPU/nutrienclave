@@ -24,7 +24,7 @@ const OnboardingStep1 = () => {
 
                 <h1 className="text-3xl font-light mb-4 tracking-tight">Tu Consejero Privado</h1>
                 <p className="text-gray-500 mb-12 max-w-xs leading-relaxed">
-                    Ciencia y precisión en la palma de tu mano. Tu IA analiza cada biomarcador para guiarte.
+                    Ciencia y precisión en la palma de tu mano. Tu IA analiza tus biomarcadores y sincroniza tus dispositivos en tiempo real para guiarte.
                 </p>
 
                 {/* Progress dots */}
@@ -37,7 +37,7 @@ const OnboardingStep1 = () => {
                 <div className="w-full flex justify-end">
                     <button
                         className="text-primary font-light flex items-center gap-1 hover:opacity-70 transition-opacity bg-transparent border-none cursor-pointer"
-                        onClick={() => navigate('/onboarding/2')}
+                        onClick={() => navigate('/onboarding/3')}
                     >
                         Siguiente
                     </button>

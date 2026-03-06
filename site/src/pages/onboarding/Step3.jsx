@@ -87,7 +87,7 @@ const OnboardingStep3 = () => {
                 <div className="w-full flex justify-between items-center">
                     <button
                         className="text-gray-300 font-light hover:text-gray-500 transition-colors"
-                        onClick={() => navigate('/onboarding/2')}
+                        onClick={() => navigate('/onboarding/1')}
                     >
                         Anterior
                     </button>

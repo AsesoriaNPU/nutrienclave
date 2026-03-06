@@ -47,7 +47,8 @@ const MealPlan = () => {
     };
 
     return (
-        <div className="min-h-screen bg-zen-bg pb-24">
+
+        <div className="min-h-screen bg-[#F3F4F6] dark:bg-[#111827] pb-24 transition-colors duration-300">
             {/* Header */}
             <header className="p-6 bg-white border-b border-gray-100 sticky top-0 z-10">
                 <div className="flex items-center gap-4 mb-1">
@@ -86,7 +87,7 @@ const MealPlan = () => {
                     key={activeDay}
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="zen-card p-4 flex items-center justify-between"
+                    className="zen-card p-4 flex items-center justify-between border border-gray-200"
                 >
                     <div>
                         <p className="text-zen-label text-gray-400 uppercase tracking-widest">{activeDay}</p>
